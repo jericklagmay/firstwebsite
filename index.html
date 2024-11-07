@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY TEACHERS DAY!!!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-image: url('1.webp'), linear-gradient(to bottom right, #ffcccb, #ffb6c1);
+            background-size: cover, cover; /* Cover the entire area */
+            background-position: center, center; /* Center the background image */
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #d5006d;
+            text-shadow: 2px 2px 5px #fff;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .teacher-button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .teacher-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            animation: pulse 0.6s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #c71585; /* Medium violet red */
+            font-weight: bold;
+            border: 2px dashed #ff69b4;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff0f5; /* Lavender blush */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .message:hover {
+            transform: scale(1.05);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px;
+            width: calc(100% - 42px);
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #sendCustom {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #c23766da, #c71585);
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #sendCustom:hover {
+            transform: scale(1.05);
+            animation: pulse 0.6s infinite;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 50px;
+            background-color: #ff69b4;
+            border-radius: 15px 15px 5px 5px; /* Rounded top */
+            opacity: 0.8;
+            animation: rise 2s forwards;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 0.8; }
+            100% { transform: translateY(-300px); opacity: 0; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            opacity: 0;
+            animation: confetti-fall 1s forwards;
+            border-radius: 50%; /* Make confetti round */
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HAPPY TEACHERS DAY!!!!</h1>
+        <div id="buttons">
+            <button class="teacher-button" data-teacher="Sir Bryan">Sir Bryan</button>
+            <button class="teacher-button" data-teacher="Sir Marvin">Sir Marvin</button>
+            <button class="teacher-button" data-teacher="Sir Pacia">Sir Pacia</button>
+            <button class="teacher-button" data-teacher="Maam Jessa">Maam Jessa</button>
+            <button class="teacher-button" data-teacher="Maam Kiarah">Maam Kiarah</button>
+        </div>
+        <div id="message" class="message"></div>
+        <input type="text" id="customMessage" placeholder="Type your custom message...">
+        <button id="sendCustom">Send to a Random Teacher</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.teacher-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const teacher = button.dataset.teacher;
+                document.getElementById('message').innerText = `Thank you, ${teacher}! HAPPY TEACHERS DAY!!!! 🎉`;
+
+                // Create balloon effect
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = `${button.offsetLeft + button.offsetWidth / 2 - 15}px`; // Center balloon above button
+                balloon.style.bottom = '100px'; // Start position
+                document.body.appendChild(balloon);
+
+                // Create confetti effect
+                for (let i = 0; i < 30; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`; // Random colors
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 1000);
+                }
+
+                // Remove balloon after animation
+                balloon.addEventListener('animationend', () => {
+                    balloon.remove();
+                });
+            });
+        });
+
+        document.getElementById('sendCustom').addEventListener('click', () => {
+            const customMessage = document.getElementById('customMessage').value;
+            const teachers = ['Sir Bryan', 'Sir Marvin', 'Sir Pacia', 'Maam Jessa', 'Maam Kiarah'];
+            const randomTeacher = teachers[Math.floor(Math.random() * teachers.length)];
+            document.getElementById('message').innerText = `Sending to ${randomTeacher}: "${customMessage}"`;
+
+            // Create balloon effect
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = `${window.innerWidth / 2 - 15}px`; // Center balloon above the button
+            balloon.style.bottom = '100px'; // Start position
+            document.body.appendChild(balloon);
+
+            // Create confetti effect
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`; // Random colors
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1000);
+            }
+
+            // Remove balloon after animation
+            balloon.addEventListener('animationend', () => {
+                balloon.remove();
+            });
+        });
+    </script>
+</body>
+</html>

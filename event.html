@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Even Delegation Example</title>
+    <script>
+        function handleClick(event){
+            if(event.target.tagName ==='BUTTON'){
+                alert('Event Delegation Activity');
+
+            }
+        }
+        window.onload = function(){
+            document.getElementById("buttonContainer").addEventListener("click",handleC lick);
+        };
+    </script>
+</head>
+<body>
+   <div id="buttonContainer"> 
+    <button>Button1</button>
+    <button>Button2</button>
+    <button>Button3</button>
+   </div>
+    
+</body>
+</html>
